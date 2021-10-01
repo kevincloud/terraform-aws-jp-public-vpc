@@ -46,7 +46,7 @@ resource "aws_subnet" "private-subnets" {
     tags = merge(
         var.tags,
         {
-            "Name" = "javaperks-private-subnet-${count.index+1}-${var.unit_prefix}"
+            "Name" = "javaperks-private-subnet-${index(var.private_subnets, each.key)+1}-${var.unit_prefix}"
         }
     )
 }
