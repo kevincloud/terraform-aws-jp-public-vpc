@@ -97,7 +97,9 @@ resource "aws_route_table" "natgw-route" {
 }
 
 resource "aws_route_table_association" "route-out" {
-    subnet_id = aws_subnet.private-subnet.id
+    for_each = aws_subnet.private-subnets
+
+    subnet_id = each.value.id
     route_table_id = aws_route_table.natgw-route.id
 }
 
